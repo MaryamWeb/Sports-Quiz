@@ -1,0 +1,250 @@
+:root {
+	--primary-color: #00818a;
+	--secondary-color: #404b69;
+	--tertiary-color: #dbedf3;
+	--fourth-color: #283149;
+}
+
+body {
+	margin: 0 !important;
+	height: 0 !important;
+	background: #0f2027 !important; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #285c72, #1ba2ac) !important; /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#285c72,
+		#1ba2ac
+	) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+h1 {
+	color: var(--fourth-color) !important;
+	-webkit-text-stroke: 1px white;
+	font-size: 4rem !important;
+}
+table.ui.table {
+	border: none;
+}
+table.ui.table thead th {
+	background-color: var(--secondary-color);
+	color: var(--tertiary-color);
+}
+table.ui.table tbody td {
+	background-color: var(--tertiary-color);
+}
+#navbar {
+	background-color: var(--fourth-color);
+}
+#navbar a {
+	color: white;
+}
+/*---------------------------Welcome Page------------------------*/
+#welcome-container {
+	max-width: 800px;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 5rem;
+}
+#welcome-container p {
+	color: white;
+	font-size: 1.5rem;
+}
+#welcome-container a.welcome-links {
+	display: block;
+	max-width: 400px;
+	margin: 30px auto;
+	background-color: var(--secondary-color);
+	color: white;
+}
+#welcome-container a.welcome-links:hover {
+	color: var(--fourth-color);
+}
+/*--------------------Login and Register form--------------------*/
+.login-register-container {
+	max-width: 600px;
+	margin: 0 auto;
+	margin-top: 5rem;
+}
+.column.login-register-container .stacked {
+	background-color: var(--secondary-color);
+}
+div.login-register-container input {
+	height: 50px;
+}
+.login-register-container label {
+	color: var(--tertiary-color) !important;
+}
+.column.login-register-container .btn-login-register {
+	background-color: var(--tertiary-color);
+	color: var(--fourth-color);
+}
+.column.login-register-container .btn-login-register:hover {
+	background-color: var(--tertiary-color);
+	color: var(--primary-color);
+}
+/*---------------------------Play Page------------------------*/
+#play-container {
+	max-width: 800px;
+	margin: 0 auto;
+	margin-top: 5rem;
+}
+#play-container .segment {
+	background-color: var(--secondary-color);
+}
+div#play-container h1.ui.center.aligned.header {
+	color: white !important;
+}
+#play-container .field {
+	margin-bottom: 10px;
+}
+#play-container h5 {
+	color: white;
+	font-size: 1.2rem;
+	margin-bottom: 5px;
+}
+#play-container .btn-play {
+	background-color: var(--tertiary-color);
+	color: var(--secondary-color);
+}
+#play-container label {
+	color: #00818a;
+	font-size: 1.4rem;
+}
+/*--------------------quiz page--------------------*/
+#quiz-container {
+	max-width: 1000px;
+	margin: 0 auto;
+	margin-top: 5rem;
+}
+#quiz-container .stacked {
+	background-color: var(--secondary-color);
+}
+#quiz-container p {
+	color: var(--tertiary-color);
+	font-size: 1.2rem;
+}
+#quiz-container .btn-quiz {
+	background-color: var(--tertiary-color);
+	color: var(--secondary-color);
+}
+#quiz-container .field.quiz-field {
+	margin: 20px 20px 30px 20px;
+}
+/*--------------------dashboard page--------------------*/
+div#dashboard-container {
+	max-width: 1000px;
+	margin: 0 auto;
+	margin-top: 5rem;
+}
+#dashboard-container h4 {
+	color: white;
+}
+/*--------------------Stats page--------------------*/
+.ui.comments textarea {
+	height: auto !important;
+}
+.ui.comments .ui.dividing.header {
+	border-bottom-color: var(--tertiary-color);
+}
+#dashboard-container table {
+	margin-bottom: 0;
+}
+.comments-note {
+	color: white;
+	margin-top: 5px;
+}
+.ui.comments h3.header,
+.ui.comments .comment p.text {
+	color: var(--tertiary-color);
+}
+.ui.comments .comment a.author {
+	color: var(--fourth-color);
+}
+.ui.comments .button {
+	background-color: var(--tertiary-color);
+	color: var(--fourth-color);
+}
+.ui.comments .button:hover {
+	background-color: var(--tertiary-color);
+	color: var(--primary-color);
+}
+/*--------------------User Page--------------------*/
+#user-container {
+	max-width: 1000px;
+	margin: 0 auto;
+	margin-top: 5rem;
+}
+#user-container .button {
+	background-color: var(--tertiary-color);
+	color: var(--fourth-color);
+}
+/*--------------------Admin Page--------------------*/
+div#admin-container {
+	max-width: 1000px;
+	margin: 0 auto;
+	margin-top: 5rem;
+}
+#admin-container .button {
+	background-color: var(--tertiary-color);
+	color: var(--fourth-color);
+}
+/*--------------------New question--------------------*/
+div#newquestion_container {
+	max-width: 600px;
+	margin: 0 auto;
+	margin-top: 5rem;
+}
+#newquestion_container .button {
+	background-color: var(--secondary-color);
+	color: var(--tertiary-color);
+}
+#newquestion_container .button:hover {
+	color: var(--primary-color);
+}
+#newquestion_container label {
+	color: var(--tertiary-color);
+}
+/*----------------------results----------------------*/
+div#result-container {
+	background-color: var(--secondary-color);
+	max-width: 1000px;
+	margin: 0 auto;
+	margin-top: 5rem;
+	text-align: center;
+}
+div#result-container p {
+	color: white;
+	font-size: 1.5rem;
+}
+div#result-container h1 {
+	color: white !important;
+}
+div#result-container h3 {
+	color: #00818a;
+	font-size: 1.5rem;
+}
+div#result-container a.playagain-links {
+	display: block;
+	max-width: 400px;
+	margin: 30px auto;
+	background-color: var(--tertiary-color);
+	color: var(--secondary-color);
+}
+div#result-container a.playagain-links:hover {
+	color: var(--fourth-color);
+}
+div#result-container a.clickhere {
+	color: white;
+}
+div#result-container a.clickhere:hover {
+	color: #00818a;
+}
+/*----------------------Errors----------------------*/
+div.error-container,
+div.error-container-category {
+	margin-top: 10px;
+}
+div.error-container p.text-error,
+div.error-container-category p.text-error {
+	color: rgb(252, 241, 241);
+	font-size: 1.1rem;
+}

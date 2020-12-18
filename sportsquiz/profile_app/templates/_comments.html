@@ -1,0 +1,29 @@
+{%for comment in comments%}
+                  <div id ="comment_content" class="comment">
+                    <div class="content">
+                      <a  class="author">{{comment.user_comment.first_name| capfirst}} {{comment.user_comment.last_name| capfirst}}</a>
+                      <div class="metadata">
+                        <span class="date">{{comment.created_at}}</span>
+                      </div>
+                      <p class="text">{{comment.comment_content}}</p>
+                      <div class="actions">
+                        <a id="reply{{comment.id}}" class="reply">Reply</a>
+                      </div>
+                    </div>
+                    {%for reply in replies%}
+                    {%if reply.reply_to.id == comment.id%}
+                    <div class="comments">
+                      <div class="comment">
+                        <div class="content">
+                          <a class="author">{{reply.user_reply.first_name}} {{reply.user_reply.last_name}}</a>
+                          <div class="metadata">
+                            <span class="date">{{reply.created_at}}</span>
+                          </div>
+                          <p class="text">
+                            {{reply.reply_content}}
+                          </p>
+                        </div>
+                      </div>
+                    {%endif%}
+                    {%endfor%}
+                    {%endfor%}
