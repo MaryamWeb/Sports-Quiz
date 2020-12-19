@@ -1,7 +1,7 @@
 import bcrypt
 from login_app.models import User
 from django.contrib import messages
-from django.db.models import Sum , Max
+from django.db.models import Sum 
 from .models import Comment, Reply
 from quiz_app.models import Score, Category, Question 
 from django.http import JsonResponse,HttpResponseRedirect
@@ -25,14 +25,23 @@ def dashboard(request):
 
 def stats(request):
     if 'user_id' in request.session:
-        highest_score=Score.objects.values('quiz_category','quiz_taken_by').annotate(sum=Sum('score')).order_by('-sum')
+        categories= Category.objects.all()
+        sum_scores=Score.objects.values('quiz_category','quiz_taken_by').annotate(sum=Sum('score')).order_by('-sum') 
+ 
+        highest_score=[] 
+        for catg in categories:
+            for score in sum_scores:
+                if score['quiz_category'] == catg.id :
+                    highest_score.append(score)
+                    break
+
         context={
             "categories":Category.objects.all(), 
             "users":User.objects.all(),
             "scores":Score.objects.values('quiz_taken_by'),
-            "highest": highest_score,
             "comments":Comment.objects.all(),
-            'replies':Reply.objects.all()
+            'replies':Reply.objects.all(),
+            'highest_score':highest_score
         }
         return render(request,'categorystats.html',context)
     return HttpResponse(render(request,'index.html'))

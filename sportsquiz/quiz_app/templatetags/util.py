@@ -3,7 +3,7 @@ from django import template
 register = template.Library()
 
 @register.filter
-def times(value):
-    return range(value)
+def get_type(value):
+    return type(value)
 
  
