@@ -9,7 +9,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity= "sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script> 
         <script src= "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script> 
- 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
         
         <script>
             $(document).ready(function(){
@@ -43,6 +44,28 @@
                             for( var key in err.responseJSON){
                                 $('.error-container').append(`<p class='text-error'><i class='exclamation circle icon'></i>${err.responseJSON[key]}</p>`);
                             }
+                        }
+                    })
+                })
+                $(`.permissionremove`).one('click',function(event){   
+                    event.preventDefault();
+                    var userid = $(this).attr("id");
+                    $.ajax({
+                        url: `/admin/removeadmin/${userid}`,
+                        success: function(response){
+                            $(`.remove${userid}`).toggleClass('fa-check fa-times');
+                        }
+                    })
+                })
+
+                $(`.permissionset`).one('click', function(event){
+                    event.preventDefault();
+                    var userid = $(this).attr("id");
+                    $.ajax({
+                        url: `/admin/setadmin/${userid}`,   
+                        success: function(response){
+                            $(`.set${userid}`).toggleClass('fa-times fa-check');
+                            // $(`.set${userid}`).removeClass("fa-times").addClass("fa-check");
                         }
                     })
                 })
@@ -135,9 +158,9 @@
                             <td>{{user.written_by.count}}</td>
                             <td><a href="/admin/delete/{{user.id}}"><i class="trash icon"></i></a></td>
                             {%if user.isadmin == True%}
-                                <td><a href="/admin/removeadmin/{{user.id}}" id="{{user.id}}"><i class="check icon"></i></a></td>
+                                <td><i id="{{user.id}}" class="permissionremove remove{{user.id}} fas fa-check"></i></td>
                             {%else%}
-                                <td><a href="/admin/setadmin/{{user.id}}" id="{{user.id}}"><i class="close icon"></i></a></td>
+                                <td ><i id="{{user.id}}" class="permissionset set{{user.id}} fas fa-times"></i></td>
                             {%endif%}
                         </tr>
                         {%endfor%}
