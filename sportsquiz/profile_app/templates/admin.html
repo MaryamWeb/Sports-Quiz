@@ -26,7 +26,18 @@
                             })
                         },}).modal('show');
                 });
-
+                $('.delete_user').on('click', function() {
+                    var userid = $(this).attr("id");
+                    $('.modal').modal({
+                        onApprove: function (e) {
+                            $.ajax({
+                                url: `/admin/delete/${userid}`,
+                                data: $(this).serialize(),
+                                success: response=>$('tr#lineuser'+userid).remove(),
+                                error: err=> console.log("error")
+                            })
+                        },}).modal('show');
+                });
                 $('.tabular.menu .item').tab(); 
                 $('#create_category_admin_form').submit(function(event){
                     $('.error-container-category p').remove()
@@ -68,7 +79,7 @@
                     $.ajax({
                         url: `/admin/removeadmin/${userid}`,
                         success: function(response){
-                            $(`.remove${userid}`).toggleClass('fa-check fa-times');
+                            $(`.remove${userid}`).toggleClass('check close');
                         }
                     })
                 })
@@ -79,7 +90,7 @@
                     $.ajax({
                         url: `/admin/setadmin/${userid}`,   
                         success: function(response){
-                            $(`.set${userid}`).toggleClass('fa-times fa-check');
+                            $(`.set${userid}`).toggleClass('close check');
                         }
                     })
                 })
@@ -176,16 +187,16 @@
                         </tr>
                         {%endif%}
                         {%for user in users%}
-                        <tr> 
+                        <tr id="lineuser{{user.id}}"> 
                             <td>{{user.id}}</td>
                             <td>{{user.first_name| capfirst}} {{user.last_name| capfirst}}</td>
                             <td>{{user.created_at}}</td>
                             <td>{{user.written_by.count}}</td>
-                            <td><a href="/admin/delete/{{user.id}}"><i class="trash icon"></i></a></td>
+                            <td id="{{user.id}}" class="delete_user"><i class="trash icon"></i></td>  
                             {%if user.isadmin == True%}
-                                <td><i id="{{user.id}}" class="permissionremove remove{{user.id}} fas fa-check"></i></td>
+                                <td><i id="{{user.id}}" class="permissionremove remove{{user.id}} check icon"></i></td>
                             {%else%}
-                                <td ><i id="{{user.id}}" class="permissionset set{{user.id}} fas fa-times"></i></td>
+                                <td ><i id="{{user.id}}" class="permissionset set{{user.id}} close icon"></i></td>
                             {%endif%}
                         </tr>
                         {%endfor%}

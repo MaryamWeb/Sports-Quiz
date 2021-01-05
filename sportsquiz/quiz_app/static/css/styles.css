@@ -257,7 +257,15 @@ div.error-container-category p.text-error {
 	background-color: rgb(219, 2, 19);
 	color: white;
 }
+.ui.approve.button:hover {
+	background-color: rgb(170, 7, 21);
+	color: white;
+}
 .ui.cancel.button {
 	background-color: rgb(153, 153, 153);
+	color: white;
+}
+.ui.cancel.button:hover {
+	background-color: rgb(133, 128, 128);
 	color: white;
 }
