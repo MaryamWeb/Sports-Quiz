@@ -14,6 +14,19 @@
         
         <script>
             $(document).ready(function(){
+                $('.delete_question').on('click', function() {
+                    var questionid = $(this).attr("id");
+                    $('.modal').modal({
+                        onApprove: function (e) {
+                            $.ajax({
+                                url: `/question/delete/${questionid}`,
+                                data: $(this).serialize(),
+                                success: response=>$('tr#line'+questionid).remove(),
+                                error: err=> console.log("error")
+                            })
+                        },}).modal('show');
+                });
+
                 $('.tabular.menu .item').tab(); 
                 $('#create_category_admin_form').submit(function(event){
                     $('.error-container-category p').remove()
@@ -67,7 +80,6 @@
                         url: `/admin/setadmin/${userid}`,   
                         success: function(response){
                             $(`.set${userid}`).toggleClass('fa-times fa-check');
-                            // $(`.set${userid}`).removeClass("fa-times").addClass("fa-check");
                         }
                     })
                 })
@@ -88,6 +100,18 @@
             </div>
         </div>
         <div id="admin-container">
+             
+           
+            <div class="ui mini modal">
+                <div class="header">Delete the item?</div>
+                <div class="content">
+                  <p>It will be permanently deleted</p>
+                </div>
+                <div class="actions">
+                  <div class="ui approve button">Delete</div>
+                  <div class="ui cancel button">Cancel</div>
+                </div>
+              </div>
             <h1 class="ui center aligned header">Welcome {{request.session.first_name| capfirst}}</h1>
             <div class="ui top attached tabular menu">
                 <a class="active item" data-tab="questions">Questions</a>
@@ -95,7 +119,6 @@
                 <a class="item" data-tab="add_question">Add Question</a>
                 <a class="item" data-tab="add_category">Add Category</a>
             </div>
-              
               <div class="ui bottom attached tab segment active" data-tab="questions">
                 <!-- <div class="field">
                     <label>Order by</label>
@@ -117,12 +140,12 @@
                     </thead>
                     <tbody>
                         {%for question in questions%}
-                        <tr> 
+                        <tr id="line{{question.id}}"> 
                             <td>{{question.belong_category.title | capfirst}}</td>
                             <td>{{question.question|truncatewords:8}}</td>
                             <td>{{question.created_by.first_name | capfirst}} {{question.created_by.last_name | capfirst}}</td>
                             <td><a href="/question/edit/{{question.id}}"><i class="edit icon"></i></a></td>
-                            <td><a href="/question/delete/{{question.id}}"><i class="trash icon"></i></a></td>
+                            <td id="{{question.id}}" class="delete_question"><i class="trash icon"></i></td> 
                         </tr>
                         {%endfor%}
                     </tbody>

@@ -37,6 +37,10 @@ table.ui.table tbody td {
 #navbar a {
 	color: white;
 }
+i.icon:before {
+	cursor: pointer;
+	color: #1ba2ac;
+}
 /*---------------------------Welcome Page------------------------*/
 #welcome-container {
 	max-width: 800px;
@@ -247,4 +251,13 @@ div.error-container p.text-error,
 div.error-container-category p.text-error {
 	color: rgb(252, 241, 241);
 	font-size: 1.1rem;
+}
+/*----------------------Modal----------------------*/
+.ui.approve.button {
+	background-color: rgb(219, 2, 19);
+	color: white;
+}
+.ui.cancel.button {
+	background-color: rgb(153, 153, 153);
+	color: white;
 }
