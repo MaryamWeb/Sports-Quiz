@@ -23,10 +23,11 @@
                         method: 'post',
                         data: $(this).serialize(),
                         success: function(response){
-                            location.href ="{%url 'admin_page'%}"
+                            $("#create_category_admin_form")[0].reset();
+                            $('.error-container-category').append("<p class='text-error'>Category has been successfully submitted</p>");
                         },
                         error: function(err){
-                            $('.error-container-category ').append(`<p class='text-error'><i class='exclamation circle icon'></i>${err.responseJSON}</p>`);
+                            $('.error-container-category').append(`<p class='text-error'><i class='exclamation circle icon'></i>${err.responseJSON}</p>`);
                         }
                     })
                 })
@@ -38,7 +39,8 @@
                         method: 'post',
                         data: $(this).serialize(),
                         success: function(response){
-                            location.href ="{%url 'admin_page'%}"
+                            $("#create_question_admin_form")[0].reset();
+                            $('.error-container').append("<p class='text-error'>Question has been successfully submitted</p>");
                         },
                         error: function(err){
                             for( var key in err.responseJSON){

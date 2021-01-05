@@ -20,7 +20,8 @@
                         method: 'post',
                         data: $(this).serialize(),
                         success: function(response){
-                            location.href ="/user"
+                            $("#create_question_user_form")[0].reset();
+                            $('.error-container').append("<p class='text-error'>Question has been successfully submitted</p>");
                         },
                         error: function(err){
                             for( var key in err.responseJSON){
