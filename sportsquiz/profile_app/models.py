@@ -11,10 +11,10 @@ class CommentManager(models.Manager):
         return errors
 
     def validateEmptyReply(self, post_data): 
-        error=''
+        errors={}
         if post_data['reply'] == '' :
-            error='Please fill in the field. You can not submit an empty reply'
-        return error
+            errors='Please fill in the field. You can not submit an empty reply'
+        return errors
 
 class Comment(models.Model):
     comment_content = models.TextField()

@@ -19,7 +19,7 @@
                         data: $(this).serialize(),
                         success: function(response){
                             $('.error-container p').remove()
-                            $('#form-submit')[0].reset()
+                            $('#comment-form')[0].reset()
                             $('#comment_content_reply').html(response);
                         },
                         error: function(err){
@@ -28,20 +28,22 @@
                         }
                     })
                 })
-                $('#reply-form').submit(function(event){
+                $('.reply-form').submit(function(event){
                     event.preventDefault();
+                    var fullid = $(this).attr("id");
+                    var commentid= fullid.substring(4);
                     $.ajax({
                         url: '/stats/reply',
                         method: 'post',
                         data: $(this).serialize(),
                         success: function(response){
-                            $('.error-container p').remove()
-                            $('#form-submit')[0].reset()
+                            $(`.error-container${commentid} p`).remove()
+                            $(`#${fullid}`)[0].reset()
                             $('#comment_content_reply').html(response);
                         },
                         error: function(err){
-                            $('.error-container p').remove()
-                            $('.error-container').append(`<p class='text-error'><i class='exclamation circle icon'></i>${err.responseJSON.reply}</p>`);
+                            $(`.error-container${commentid} p`).remove()
+                            $(`.error-container${commentid}`).append(`<p class='text-error'><i class='exclamation circle icon'></i>${err.responseJSON}</p>`);
                         }
                     })
                 })
@@ -104,7 +106,15 @@
               <p class="comments-note">*Only registered users stats are included</p>
               <div class="ui comments">
                 <h3 class="ui dividing header">Comments</h3>
-
+                <form id="comment-form" class="ui reply form">
+                  {% csrf_token %}
+                  <div class="field">
+                    <label>Post a comment</label>
+                    <textarea rows="3" name="comment"></textarea>
+                  </div>
+                  <input type='submit' value='Add Comment' class="ui small button">
+                </form>
+                <div class="error-container"></div>
                 <div id="comment_content_reply">
                 {%for comment in comments%}
                   <div id ="comment_content" class="comment">
@@ -113,9 +123,6 @@
                         <span class="date">{{comment.created_at|timesince}} ago</span>
                       </div>
                       <p class="text">{{comment.comment_content}}</p>
-                      <div class="actions">
-                        <a id="reply{{comment.id}}" class="reply">Reply</a>
-                  </div>
                   
                     {%for reply in replies%}
                       {%if reply.reply_to.id == comment.id%}
@@ -131,7 +138,7 @@
                         </div>
                       {%endif%}
                     {%endfor%}
-                    <form id="reply-form" class="ui reply form">
+                    <form class="reply-form" id="form{{comment.id}}" class="ui reply form">
                       {% csrf_token %}
                       <div class="field">
                         <textarea rows="1" name="reply"></textarea>
@@ -139,21 +146,11 @@
                       </div>
                       <input type='submit' value='Add Reply' class="ui small button">
                     </form>
-                    <div class="error-container"></div>
+                    <div class="error-container error-container{{comment.id}}"></div>
                   </div>
                 {%endfor%}
               </div>
             </div>
-
-                <form id="comment-form" class="ui reply form">
-                  {% csrf_token %}
-                  <div class="field">
-                    <label>Post a comment</label>
-                    <textarea rows="3" name="comment"></textarea>
-                  </div>
-                  <input type='submit' value='Add Comment' class="ui small button">
-                </form>
-                <div class="error-container"></div>
               </div>
         </div>
     </body>

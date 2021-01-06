@@ -95,12 +95,13 @@ def comment(request):
         if request.method == 'POST':
             errors = Comment.objects.validateEmptyComment(request.POST)
             if len( errors) > 0:   
-                return JsonResponse(errors, status=500)
+                return JsonResponse(errors, status=500, safe=False)
             else:  
                 user=User.objects.get(id=request.session['user_id'])
                 Comment.objects.create(comment_content=request.POST['comment'], user_comment=user)
                 context = {
-                    'comments':Comment.objects.all()
+                    'comments':Comment.objects.all(),
+                    'replies':Reply.objects.all(),
                 }
                 return render(request,'_comments.html',context)
     return HttpResponse(render(request,'index.html'))
@@ -110,13 +111,14 @@ def reply(request):
         if request.method == 'POST':
             errors = Reply.objects.validateEmptyReply(request.POST)
             if len( errors) > 0:   
-                return JsonResponse(errors, status=500)
+                return JsonResponse(errors, status=500, safe=False)
             else:  
                 user=User.objects.get(id=request.session['user_id'])
                 comment_id=Comment.objects.get(id=request.POST['comment_id'])
                 Reply.objects.create(reply_content=request.POST['reply'], user_reply=user,reply_to=comment_id)
                 context = {
-                    'replies':Reply.objects.all()
+                    'replies':Reply.objects.all(),
+                    'comments':Comment.objects.all()
                 }
                 return render(request,'_comments.html',context)
     return HttpResponse(render(request,'index.html'))
