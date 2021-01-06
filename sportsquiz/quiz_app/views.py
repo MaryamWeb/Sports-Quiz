@@ -4,7 +4,7 @@ from django.http import JsonResponse,HttpResponseRedirect
 from django.shortcuts import render, redirect, HttpResponse
 from login_app.models import User
 from .models import Score, Category, Question 
-
+import random
 def index(request):
     return render(request,'index.html')
 
@@ -23,10 +23,9 @@ def quiz(request):
         else: 
             request.session['playcategory'] =  request.POST['category']
             request.session['numquestions'] =  request.POST['number_of_questions']
-
             context={
                 "category":Category.objects.get(id=request.session['playcategory']),
-                "questions":Question.objects.filter(belong_category=request.session['playcategory'])[:int(request.session['numquestions'])]
+                "questions": Question.objects.filter(belong_category=request.session['playcategory']).order_by('?')[:int(request.session['numquestions'])]
             }
             return render(request,'quiz.html',context)
         return redirect('/')
