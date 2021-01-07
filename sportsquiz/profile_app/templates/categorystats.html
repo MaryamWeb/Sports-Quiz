@@ -18,32 +18,32 @@
                         method: 'post',
                         data: $(this).serialize(),
                         success: function(response){
-                            $('.error-container p').remove()
+                            $('.error-container-comment p').remove()
                             $('#comment-form')[0].reset()
                             $('#comment_content_reply').html(response);
                         },
                         error: function(err){
-                            $('.error-container p').remove()
-                            $('.error-container').append(`<p class='text-error'><i class='exclamation circle icon'></i>${err.responseJSON.comment}</p>`);
+                            $('.error-container-comment p').remove()
+                            $('.error-container-comment').append(`<p class='text-error'><i class='exclamation circle icon'></i>${err.responseJSON.comment}</p>`);
                         }
                     })
                 })
                 $('.reply-form').submit(function(event){
                     event.preventDefault();
                     var fullid = $(this).attr("id");
-                    var commentid= fullid.substring(4);
+                    var replyid= fullid.substring(4);
                     $.ajax({
                         url: '/stats/reply',
                         method: 'post',
                         data: $(this).serialize(),
                         success: function(response){
-                            $(`.error-container${commentid} p`).remove()
+                            $(`#error-container${replyid} p`).remove()
                             $(`#${fullid}`)[0].reset()
                             $('#comment_content_reply').html(response);
                         },
                         error: function(err){
-                            $(`.error-container${commentid} p`).remove()
-                            $(`.error-container${commentid}`).append(`<p class='text-error'><i class='exclamation circle icon'></i>${err.responseJSON}</p>`);
+                            $(`#error-container${replyid} p`).remove()
+                            $(`#error-container${replyid}`).append(`<p class='text-error'><i class='exclamation circle icon'></i>${err.responseJSON}</p>`);
                         }
                     })
                 })
@@ -114,44 +114,41 @@
                   </div>
                   <input type='submit' value='Add Comment' class="ui small button">
                 </form>
-                <div class="error-container"></div>
+                <div class="error-container-comment"></div>
                 <div id="comment_content_reply">
                 {%for comment in comments%}
-                  <div id ="comment_content" class="comment">
-                      <a  class="author">{{comment.user_comment.first_name| capfirst}} {{comment.user_comment.last_name| capfirst}}</a>
+                  <div class="comment">
+                      <span  class="author">{{comment.user_comment.first_name| capfirst}} {{comment.user_comment.last_name| capfirst}}</span>
                       <div class="metadata">
                         <span class="date">{{comment.created_at|timesince}} ago</span>
                       </div>
                       <p class="text">{{comment.comment_content}}</p>
-                  
                     {%for reply in replies%}
                       {%if reply.reply_to.id == comment.id%}
                       <div class="comments">
                         <div class="comment">
-                            <a class="author">{{reply.user_reply.first_name}} {{reply.user_reply.last_name}}</a>
+                            <span class="author">{{reply.user_reply.first_name}} {{reply.user_reply.last_name}}</span>
                             <div class="metadata">
                               <span class="date">{{reply.created_at|timesince}} ago</span>
                             </div>
-                            <p class="text">
-                              {{reply.reply_content}}
-                            </p>
+                            <p class="text">{{reply.reply_content}}</p>
                         </div>
                       {%endif%}
                     {%endfor%}
-                    <form class="reply-form" id="form{{comment.id}}" class="ui reply form">
+                    <form id="form{{comment.id}}" class="ui reply form reply-form">
                       {% csrf_token %}
                       <div class="field">
-                        <textarea rows="1" name="reply"></textarea>
+                        <textarea rows="2" name="reply"></textarea>
                         <input type="hidden" name="comment_id" value="{{comment.id}}">
                       </div>
-                      <input type='submit' value='Add Reply' class="ui small button">
+                      <input type='submit' value='Add Reply' class="reply-link">
                     </form>
-                    <div class="error-container error-container{{comment.id}}"></div>
+                    <div class="error-container" id="error-container{{comment.id}}"></div>
                   </div>
+                </div>
                 {%endfor%}
-              </div>
             </div>
-              </div>
+          </div>
         </div>
     </body>
 </html>
