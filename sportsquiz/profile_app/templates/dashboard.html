@@ -23,29 +23,31 @@
         <div id="dashboard-container">
             <h1 class="ui center aligned header">Highest Scores</h1>
             {%for category in categories %}
-                <h4 >{{category.title| capfirst}}</h4>
-                <table class="ui table center aligned">
-                    <thead>
-                        <tr>
-                        <th>User</th>
-                        <th>Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {%for score in scores%} 
-                        {%if score.quiz_category == category.id%}
-                            {%for user in users%}
-                                {%if user.id == score.quiz_taken_by %}
-                                    <tr>
-                                        <td>{{ user.first_name| capfirst}}</td>
-                                        <td>{{ score.sum }}</td>
-                                    </tr>
-                                {%endif%}
-                            {%endfor%}
-                    {%endif%}
-                    {%endfor%}
-                    </tbody>
-                </table>
+                {%if category.questions_in_category.count > 0 %}
+                    <h4 >{{category.title| capfirst}}</h4>
+                    <table class="ui table center aligned">
+                        <thead>
+                            <tr>
+                            <th>User</th>
+                            <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {%for score in scores%} 
+                            {%if score.quiz_category == category.id%}
+                                {%for user in users%}
+                                    {%if user.id == score.quiz_taken_by %}
+                                        <tr>
+                                            <td>{{ user.first_name| capfirst}}</td>
+                                            <td>{{ score.sum }}</td>
+                                        </tr>
+                                    {%endif%}
+                                {%endfor%}
+                        {%endif%}
+                        {%endfor%}
+                        </tbody>
+                    </table>
+                {%endif%}
             {%endfor%}
         </div>
     </body>
