@@ -7,7 +7,17 @@
         {% load static%}
         <link rel="stylesheet" href="{% static 'css/styles.css'%}"> 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity= "sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script> 
         <script src= "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script> 
+        <script>
+            $(document).ready(function(){
+                $('input[type=radio][name=category]').change(function(event){
+                    var selectedValue = $(this).attr("num_qs");
+                    $('#amount').attr("max",selectedValue);
+                    console.log(selectedValue);
+                })
+            })
+        </script>
     </head>
         <body>
             <div id="play-container">
@@ -18,17 +28,19 @@
                     <h5>Choose a sport</h5>
                     <div class="inline fields">
                         {%for category in categories%}
-                        <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="category" value="{{category.id}}" checked="checked" >
-                            <label>{{category.title}}</label>
-                        </div>
-                        </div>
+                            {%if category.questions_in_category.count > 0%}
+                            <div class="field">
+                            <div class="ui radio checkbox">
+                                <input id='select_category' type="radio" name="category" num_qs={{category.questions_in_category.count}} value="{{category.id}}"  >
+                                <label>{{category.title}}</label>
+                            </div>
+                            </div>
+                            {%endif%}
                         {%endfor%}
                     </div>
                     <div class="field">
                         <h5>How many questions do you want?</h5>
-                        <input type="number" name="number_of_questions" min=2 max=9 placeholder="choose a number">
+                        <input id='amount' type="number" name="number_of_questions" min=2 max="" placeholder="choose a number">
                     </div>
                     <input type='submit' value='I am ready!' class="ui button btn-play">
                 </div>

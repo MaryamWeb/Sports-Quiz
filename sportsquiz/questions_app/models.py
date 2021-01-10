@@ -14,8 +14,8 @@ class QuestionManager(models.Manager):
         return errors
     def validateStartQuiz(self, post_data):
         error=''
-        if post_data['number_of_questions'] == '':
-            error='Please select number of questions'
+        if post_data['number_of_questions'] == '' or post_data.get('category','') == '':
+            error='Please make sure that you select the category and number of questions'
         return error
      
 class CategoryManager(models.Manager):
