@@ -28,10 +28,10 @@
                     <h5>Choose a sport</h5>
                     <div class="inline fields">
                         {%for category in categories%}
-                            {%if category.questions_in_category.count > 0%}
+                            {%if category.questions_in_group.count > 0%}
                             <div class="field">
                             <div class="ui radio checkbox">
-                                <input id='select_category' type="radio" name="category" num_qs={{category.questions_in_category.count}} value="{{category.id}}"  >
+                                <input id='select_category' type="radio" name="category" num_qs={{category.questions_in_group.count}} value="{{category.id}}">
                                 <label>{{category.title}}</label>
                             </div>
                             </div>

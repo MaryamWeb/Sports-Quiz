@@ -15,14 +15,20 @@ body {
 		#285c72,
 		#1ba2ac
 	) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	font-family: 'Georgia', 'Helvetica';
 }
 h1 {
 	color: var(--fourth-color) !important;
 	-webkit-text-stroke: 1px white;
 	font-size: 4rem !important;
+	font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 table.ui.table {
 	border: none;
+	margin-top: 30px;
+	-webkit-box-shadow: 1px 1px 18px 9px rgba(40, 49, 73, 0.78);
+	box-shadow: 1px 1px 18px 9px rgba(40, 49, 73, 0.78);
+	border-radius: 10px;
 }
 table.ui.table thead th {
 	background-color: var(--secondary-color);
@@ -41,7 +47,7 @@ i.icon:before {
 	cursor: pointer;
 	color: #1ba2ac;
 }
-/*---------------------------Welcome Page------------------------*/
+/* ---------------------------Welcome Page------------------------ */
 #welcome-container {
 	max-width: 800px;
 	text-align: center;
@@ -62,7 +68,7 @@ i.icon:before {
 #welcome-container a.welcome-links:hover {
 	color: var(--fourth-color);
 }
-/*--------------------Login and Register form--------------------*/
+/* --------------------Login and Register form-------------------- */
 .login-register-container {
 	max-width: 600px;
 	margin: 0 auto;
@@ -85,7 +91,7 @@ div.login-register-container input {
 	background-color: var(--tertiary-color);
 	color: var(--primary-color);
 }
-/*---------------------------Play Page------------------------*/
+/* ---------------------------Play Page------------------------ */
 #play-container {
 	max-width: 800px;
 	margin: 0 auto;
@@ -119,7 +125,7 @@ div#play-container h1.ui.center.aligned.header {
 	text-align: center;
 	padding-top: 20px;
 }
-/*--------------------quiz page--------------------*/
+/* --------------------quiz page-------------------- */
 #quiz-container {
 	max-width: 1000px;
 	margin: 0 auto;
@@ -139,7 +145,7 @@ div#play-container h1.ui.center.aligned.header {
 #quiz-container .field.quiz-field {
 	margin: 20px 20px 30px 20px;
 }
-/*--------------------dashboard page--------------------*/
+/* --------------------dashboard page-------------------- */
 div#dashboard-container {
 	max-width: 1000px;
 	margin: 0 auto;
@@ -148,7 +154,7 @@ div#dashboard-container {
 #dashboard-container h4 {
 	color: white;
 }
-/*--------------------Stats page--------------------*/
+/* --------------------Stats page-------------------- */
 .ui.comments textarea {
 	height: auto !important;
 }
@@ -195,7 +201,7 @@ div#dashboard-container {
 .reply-link:hover {
 	color: var(--fourth-color);
 }
-/*--------------------User Page--------------------*/
+/* --------------------User Page-------------------- */
 #user-container {
 	max-width: 1000px;
 	margin: 0 auto;
@@ -205,7 +211,7 @@ div#dashboard-container {
 	background-color: var(--tertiary-color);
 	color: var(--fourth-color);
 }
-/*--------------------Admin Page--------------------*/
+/* --------------------Admin Page-------------------- */
 div#admin-container {
 	max-width: 1000px;
 	margin: 0 auto;
@@ -215,7 +221,7 @@ div#admin-container {
 	background-color: var(--tertiary-color);
 	color: var(--fourth-color);
 }
-/*--------------------New question--------------------*/
+/* --------------------New question-------------------- */
 div#newquestion_container {
 	max-width: 600px;
 	margin: 0 auto;
@@ -231,7 +237,7 @@ div#newquestion_container {
 #newquestion_container label {
 	color: var(--tertiary-color);
 }
-/*----------------------results----------------------*/
+/* ----------------------results---------------------- */
 div#result-container {
 	background-color: var(--secondary-color);
 	max-width: 1000px;
@@ -266,7 +272,7 @@ div#result-container a.clickhere {
 div#result-container a.clickhere:hover {
 	color: #00818a;
 }
-/*----------------------Errors----------------------*/
+/* ----------------------Errors---------------------- */
 div.error-container,
 div.error-container-comment,
 div.error-container-category {
@@ -278,7 +284,7 @@ div.error-container-category p.text-error {
 	color: rgb(252, 241, 241);
 	font-size: 1.1rem;
 }
-/*----------------------Modal----------------------*/
+/* ----------------------Modal---------------------- */
 .ui.approve.button {
 	background-color: rgb(219, 2, 19);
 	color: white;
