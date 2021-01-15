@@ -15,7 +15,7 @@ def submitlogin(request):
         if len( errors) > 0: 
             return JsonResponse(errors, status=500 )
         else:  
-            logged_user = User.objects.get(email=request.POST['email'].lower())
+            logged_user = User.objects.get(username=request.POST['username'].lower())
             request.session['isadmin'] = logged_user.isadmin
             request.session['user_id'] = logged_user.id
             request.session['first_name'] = logged_user.first_name
@@ -35,7 +35,7 @@ def submitregister(request):
         else:  
             password=request.POST['password']
             pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()  
-            user = User.objects.create(first_name=request.POST['first_name'], last_name=request.POST['last_name'], email=request.POST['email'].lower(), password=pw_hash)
+            user = User.objects.create(first_name=request.POST['first_name'], last_name=request.POST['last_name'], username=request.POST['username'].lower(), password=pw_hash)
             request.session['user_id'] = user.id
             request.session['first_name'] = user.first_name
             request.session['isadmin']=user.isadmin
