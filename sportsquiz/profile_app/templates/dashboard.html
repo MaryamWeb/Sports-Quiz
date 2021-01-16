@@ -25,7 +25,7 @@
             {%for category in categories %}
                 {%if category.questions_in_category.count > 0 %}
                     <h4 >{{category.title| capfirst}}</h4>
-                    <table class="ui table center aligned">
+                    <table class="ui table center aligned dash-table">
                         <thead>
                             <tr>
                             <th>User</th>
@@ -36,7 +36,7 @@
                         {%for score in scores%} 
                             {%if score.quiz_category == category.id%}
                                 {%for user in users%}
-                                    {%if user.id == score.quiz_taken_by %}
+                                    {%if user.id == score.quiz_taken_by%}
                                         <tr>
                                             <td>{{ user.first_name| capfirst}}</td>
                                             <td>{{ score.sum }}</td>
