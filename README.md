@@ -1,6 +1,6 @@
 ## Django Sports Quiz Game 
 ### Introduction
-This app is a sports quiz game. My goal for the project was to build a fun website with the new technologies that I learnt(python, Django, Ajax) and practice diffrent queries.
+This app is a sports quiz game. My goal for the project was to build a fun website with the new technologies that I learnt(python, Django, Ajax) and practice different queries.
 
 You can play the quiz by choosing a specific sport category and the number of questions you'd like. Registered users can add new questions, edit them and delete them. Also the quiz score is saved for the registered users.
 
