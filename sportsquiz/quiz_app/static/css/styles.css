@@ -118,6 +118,7 @@ div#play-container h1.ui.center.aligned.header {
 #play-container label {
 	color: #00818a;
 	font-size: 1.4rem;
+	text-transform: capitalize;
 }
 #load-text {
 	color: rgb(252, 241, 241);
